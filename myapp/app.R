@@ -1,10 +1,3 @@
-#Install require apps:
-if (!requireNamespace("shiny", quietly = TRUE)) install.packages("shiny")
-if (!requireNamespace("plotly", quietly = TRUE)) install.packages("plotly")
-if (!requireNamespace("DT", quietly = TRUE)) install.packages("DT")
-if (!requireNamespace("stringr", quietly = TRUE)) install.packages("stringr")
-if (!requireNamespace("paletteer", quietly = TRUE)) install.packages("paletteer")
-
 # app.R
 library(shiny)
 library(plotly)
@@ -12,14 +5,6 @@ library(dplyr)
 library(tidyr)
 library(DT)
 library(stringr)
-
-# Normalize codes, e.g. "L1" -> "L001", "1" -> "L001"
-norm_code <- function(x, prefix) {
-  x <- as.character(x)
-  digits <- str_extract(x, "\\d+")
-  digits <- as.integer(digits)
-  sprintf("%s%03d", prefix, digits)
-}
 
 ui <- fluidPage(
   titlePanel("Lentil × Wheat plot matrix"),
@@ -98,6 +83,14 @@ server <- function(input, output, session) {
     } else {
       if (!"Replicate" %in% names(df)) df$Replicate <- NA_character_
       if (!"Location"  %in% names(df)) df$Location  <- NA_character_
+    }
+    
+    # Normalize codes, e.g. "L1" -> "L001", "1" -> "L001"
+    norm_code <- function(x, prefix) {
+      x <- as.character(x)
+      digits <- str_extract(x, "\\d+")
+      digits <- as.integer(digits)
+      sprintf("%s%03d", prefix, digits)
     }
     
     df <- df %>%
