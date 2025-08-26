@@ -186,7 +186,7 @@ server <- function(input, output, session) {
              plot_bgcolor = "#f7f7f7"
       )
     
-    # overlay the selected cell (bigger open circle)
+    # overlay the selected cell
     sel <- clicked()
     if (!is.null(sel)) {
       p <- p %>% add_trace(

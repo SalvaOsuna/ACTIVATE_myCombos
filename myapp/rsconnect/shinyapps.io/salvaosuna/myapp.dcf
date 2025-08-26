@@ -1,0 +1,12 @@
+name: myapp
+title: myapp
+username: salvaosuna
+account: salvaosuna
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15273353
+bundleId: 10822141
+url: https://salvaosuna.shinyapps.io/myapp/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
